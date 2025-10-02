@@ -29,37 +29,23 @@ if (!fs.existsSync(options.input)) {
 let data;
 try {
   const fileContent = fs.readFileSync(options.input, 'utf-8');
-  
-  //тут йде перевірка якщо файл починається з [ бо зіткнувася з проблемою парсингу
-  if (fileContent.trim().startsWith('[')) {
-    data = JSON.parse(fileContent);
-  } else { //в такому випадку кожен рядок окремий жейсон
-    data = fileContent
-      .trim()
-      .split('\n')
-      .filter(line => line.trim())
-      .map(line => JSON.parse(line));
-  }
+  data = JSON.parse(fileContent);
 } catch (error) {
   console.error('Error reading or parsing input file:', error.message);
   process.exit(1);
-}
-
+} //саме читання та парсинг джейсону
 
 let filteredData = data; //фільтред типу фільтрація даних
 
 if (options.survived) {
-  filteredData = filteredData.filter(passenger => 
-    passenger.Survived === 1 || passenger.Survived === "1"
-  );
+  filteredData = filteredData.filter(passenger => passenger.Survived === 1);
 } //фільтруємо виживших
 
 const result = filteredData.map(passenger => {
   let line = passenger.Name;
   
   if (options.age) {
-    const age = passenger.Age || 'N/A';
-    line += ` ${age}`;
+    line += ` ${passenger.Age || 'N/A'}`;
   }
   
   line += ` ${passenger.Ticket}`;
