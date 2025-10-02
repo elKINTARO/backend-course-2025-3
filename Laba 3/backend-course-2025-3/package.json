@@ -1,0 +1,13 @@
+{
+  "name": "backend-course-2025-3",
+  "version": "1.0.0",
+  "description": "Laba 3",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "student": "Fedotov kiril",
+  "group": "FEI-23"
+}
+
