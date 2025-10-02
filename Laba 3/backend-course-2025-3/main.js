@@ -29,11 +29,23 @@ if (!fs.existsSync(options.input)) {
 let data;
 try {
   const fileContent = fs.readFileSync(options.input, 'utf-8');
-  data = JSON.parse(fileContent);
+  
+  // Перевірка формату: якщо файл починається з '[', це масив
+  if (fileContent.trim().startsWith('[')) {
+    data = JSON.parse(fileContent);
+  } else {
+    // Інакше це NDJSON - кожен рядок окремий JSON
+    data = fileContent
+      .trim()
+      .split('\n')
+      .filter(line => line.trim())
+      .map(line => JSON.parse(line));
+  }
 } catch (error) {
   console.error('Error reading or parsing input file:', error.message);
   process.exit(1);
-} //саме читання та парсинг джейсону
+}
+ //саме читання та парсинг джейсону
 
 let filteredData = data; //фільтред типу фільтрація даних
 
