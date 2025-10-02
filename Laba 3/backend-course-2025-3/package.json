@@ -8,6 +8,8 @@
     "start": "node main.js"
   },
   "student": "Fedotov kiril",
-  "group": "FEI-23"
+  "group": "FEI-23",
+  "dependencies": {
+    "commander": "^14.0.1"
+  }
 }
-
