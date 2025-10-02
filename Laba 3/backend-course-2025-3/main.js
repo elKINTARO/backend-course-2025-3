@@ -50,7 +50,7 @@ try {
 let filteredData = data; //фільтред типу фільтрація даних
 
 if (options.survived) {
-  filteredData = filteredData.filter(passenger => passenger.Survived === 1);
+  filteredData = filteredData.filter(passenger => passenger.Survived === "1");
 } //фільтруємо виживших
 
 const result = filteredData.map(passenger => {
