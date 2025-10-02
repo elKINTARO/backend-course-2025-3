@@ -11,7 +11,7 @@ program
   .option('-s, --survived', 'Show only survived passangers')
   .option('-a, --age', 'Display passenger age');
 
-//required - обовязковий параметр , option - необовязковий
+//required - обовязковий параметр , a option - необовязковий
 
 program.parse(process.argv);
 const options = program.opts();
